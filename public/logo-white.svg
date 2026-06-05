@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80" width="200" height="80">
+  <g transform="translate(10, 10)">
+    <g transform="translate(0, 5)">
+      <path d="M 30 50 Q 5 45 5 25 Q 5 5 30 5 Q 55 5 55 25 Q 55 45 30 50 Z" fill="#FBF7F1" opacity="0.95"/>
+      <path d="M 30 5 Q 25 25 30 50" stroke="#A88359" stroke-width="1.5" fill="none" opacity="0.6"/>
+      <path d="M 18 18 Q 25 22 30 25" stroke="#A88359" stroke-width="1" fill="none" opacity="0.5"/>
+      <path d="M 18 32 Q 25 30 30 30" stroke="#A88359" stroke-width="1" fill="none" opacity="0.5"/>
+    </g>
+    <text x="70" y="32" font-family="Georgia, serif" font-size="22" font-weight="600" fill="#FBF7F1">Bo</text>
+    <text x="70" y="52" font-family="Georgia, serif" font-size="14" font-weight="400" fill="#F5EFE6" letter-spacing="2">Coaching</text>
+  </g>
+</svg>
