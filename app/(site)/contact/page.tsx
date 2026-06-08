@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import PageHeader from "@/components/PageHeader";
 import ContactForm from "@/components/ContactForm";
+import { getPageContent } from "@/lib/content";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -8,34 +11,34 @@ export const metadata: Metadata = {
     "Contactez Boris Lazzarotto pour réserver une séance fondation gratuite ou en savoir plus sur les accompagnements.",
 };
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const c = await getPageContent("contact");
+
   return (
     <>
       <PageHeader
-        eyebrow="Contact"
-        title="Faisons connaissance"
-        subtitle="La séance fondation est gratuite et sans engagement. C'est l'occasion idéale pour faire le premier pas."
+        eyebrow={c.header.eyebrow}
+        title={c.header.title}
+        subtitle={c.header.subtitle}
       />
 
       <section className="py-20 md:py-24">
         <div className="container-full grid lg:grid-cols-[1.4fr_1fr] gap-12 lg:gap-20 items-start">
           <div className="order-2 lg:order-1">
-            <span className="eyebrow">Formulaire</span>
+            <span className="eyebrow">{c.form.eyebrow}</span>
             <h2 className="h-section mt-3 mb-10 text-balance">
-              Écrivez-moi quelques mots
+              {c.form.title}
             </h2>
             <ContactForm />
           </div>
 
           <aside className="order-1 lg:order-2 lg:sticky lg:top-32 space-y-8">
             <div className="rounded-3xl bg-gradient-to-br from-bo to-bo-dark p-8 md:p-10 text-sand-50">
-              <h3 className="font-serif text-2xl mb-6">
-                Mes coordonnées
-              </h3>
+              <h3 className="font-serif text-2xl mb-6">{c.details.title}</h3>
 
               <div className="space-y-5">
                 <a
-                  href="mailto:lazzarotto.coaching@gmail.com"
+                  href={`mailto:${c.details.email}`}
                   className="flex items-start gap-4 group"
                 >
                   <div className="w-10 h-10 rounded-full bg-sand-50/15 flex items-center justify-center shrink-0 group-hover:bg-sand-50/25 transition-colors">
@@ -60,13 +63,13 @@ export default function ContactPage() {
                       Email
                     </p>
                     <p className="text-sm group-hover:underline underline-offset-4 break-all">
-                      lazzarotto.coaching@gmail.com
+                      {c.details.email}
                     </p>
                   </div>
                 </a>
 
                 <a
-                  href="tel:+41792927854"
+                  href={`tel:${c.details.phoneHref}`}
                   className="flex items-start gap-4 group"
                 >
                   <div className="w-10 h-10 rounded-full bg-sand-50/15 flex items-center justify-center shrink-0 group-hover:bg-sand-50/25 transition-colors">
@@ -91,7 +94,7 @@ export default function ContactPage() {
                       Téléphone
                     </p>
                     <p className="text-sm group-hover:underline underline-offset-4">
-                      +41 (0)79 292 78 54
+                      {c.details.phone}
                     </p>
                   </div>
                 </a>
@@ -126,10 +129,10 @@ export default function ContactPage() {
                       Lieu
                     </p>
                     <p className="text-sm">
-                      Genève, Suisse
+                      {c.details.locationTitle}
                       <br />
                       <span className="text-sand-50/70">
-                        Présentiel ou visioconférence
+                        {c.details.locationDetail}
                       </span>
                     </p>
                   </div>
@@ -138,12 +141,11 @@ export default function ContactPage() {
             </div>
 
             <div className="rounded-3xl bg-accent-100/50 border border-accent-200 p-8">
-              <h3 className="font-serif text-xl mb-3">Comment je travaille</h3>
+              <h3 className="font-serif text-xl mb-3">{c.workInfo.title}</h3>
               <ul className="space-y-2 text-sm text-ink-soft leading-relaxed">
-                <li>· Réponse sous 24 à 48h ouvrées</li>
-                <li>· Première séance fondation offerte</li>
-                <li>· Confidentialité garantie</li>
-                <li>· En présentiel ou en visio</li>
+                {c.workInfo.items.map((item, i) => (
+                  <li key={i}>· {item}</li>
+                ))}
               </ul>
             </div>
           </aside>

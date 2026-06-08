@@ -1,6 +1,9 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import PageHeader from "@/components/PageHeader";
+import { getPageContent } from "@/lib/content";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Tarifs",
@@ -8,65 +11,32 @@ export const metadata: Metadata = {
     "Tarifs des séances de coaching personnel, coaching d'équipe et formations. Chaque proposition s'adapte à vos besoins.",
 };
 
-type Plan = {
-  title: string;
-  duration: string;
-  highlight?: boolean;
-  options: { label: string; price: string }[];
-};
+export default async function TarifsPage() {
+  const c = await getPageContent("tarifs");
 
-const plans: Plan[] = [
-  {
-    title: "Coaching personnel",
-    duration: "Séances 1h",
-    options: [
-      { label: "6 séances", price: "CHF 780.–" },
-      { label: "10 séances", price: "CHF 1'200.–" },
-    ],
-    highlight: true,
-  },
-  {
-    title: "Coaching d'équipe",
-    duration: "Séances 3h",
-    options: [
-      { label: "3 séances", price: "dès CHF 1'800.–" },
-      { label: "6 séances", price: "dès CHF 3'240.–" },
-    ],
-  },
-  {
-    title: "Formation",
-    duration: "Min. 2 séances de 2h",
-    options: [
-      { label: "À l'heure", price: "dès CHF 150.–" },
-      { label: "À la journée", price: "dès CHF 1'200.–" },
-    ],
-  },
-];
-
-export default function TarifsPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Tarifs"
-        title="Tarifs de base et durée"
-        subtitle="Chaque proposition s'adapte à vos besoins."
+        eyebrow={c.header.eyebrow}
+        title={c.header.title}
+        subtitle={c.header.subtitle}
       />
 
       <section className="py-20 md:py-24">
         <div className="container-full">
           <div className="grid md:grid-cols-3 gap-6 md:gap-8">
-            {plans.map((p) => (
+            {c.plans.map((p, idx) => (
               <article
-                key={p.title}
+                key={idx}
                 className={`relative rounded-3xl p-8 md:p-10 transition-all ${
                   p.highlight
                     ? "bg-gradient-to-br from-bo to-bo-dark text-sand-50 shadow-xl scale-100 md:scale-[1.03]"
                     : "bg-white border border-sand-200 hover:border-bo/40 hover:shadow-lg"
                 }`}
               >
-                {p.highlight && (
+                {p.highlight && p.highlightLabel && (
                   <span className="absolute top-5 right-5 text-[11px] uppercase tracking-widest bg-sand-50/20 text-sand-50 px-3 py-1 rounded-full">
-                    Le plus choisi
+                    {p.highlightLabel}
                   </span>
                 )}
 
@@ -92,8 +62,8 @@ export default function TarifsPage() {
                 />
 
                 <ul className="space-y-5">
-                  {p.options.map((o) => (
-                    <li key={o.label}>
+                  {p.options.map((o, i) => (
+                    <li key={i}>
                       <p
                         className={`text-sm ${
                           p.highlight ? "text-sand-50/85" : "text-ink-muted"
@@ -121,7 +91,7 @@ export default function TarifsPage() {
                         : "inline-flex w-full items-center justify-center rounded-full border border-bo px-6 py-3 text-sm font-medium text-bo-dark transition-all hover:bg-bo hover:text-white"
                     }
                   >
-                    Demander un rendez-vous
+                    {p.cta}
                   </Link>
                 </div>
               </article>
@@ -130,13 +100,9 @@ export default function TarifsPage() {
 
           <div className="mt-16 max-w-2xl mx-auto rounded-2xl bg-accent-100/50 border border-accent-200 p-8 text-center">
             <h3 className="font-serif text-xl font-medium mb-3">
-              Séance fondation offerte
+              {c.founding.title}
             </h3>
-            <p className="body-text">
-              Avant tout engagement, je vous propose une séance de découverte{" "}
-              <strong>gratuite et sans engagement</strong> pour faire
-              connaissance, clarifier vos attentes et répondre à vos questions.
-            </p>
+            <p className="body-text">{c.founding.text}</p>
           </div>
         </div>
       </section>

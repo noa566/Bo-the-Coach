@@ -3,6 +3,9 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import PageHeader from "@/components/PageHeader";
 import QuoteBlock from "@/components/QuoteBlock";
+import { getPageContent } from "@/lib/content";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Formation",
@@ -10,81 +13,33 @@ export const metadata: Metadata = {
     "Formations sur mesure pour faire évoluer les pratiques, réaliser le potentiel et renforcer la dynamique d'équipe.",
 };
 
-const expertises = [
-  {
-    title: "Coopération et intelligence collective",
-    text: "Vision, valeurs et objectifs communs",
-  },
-  {
-    title: "Communication",
-    text: "Qualité d'écoute, expression des besoins et ressentis, régulation des tensions",
-  },
-  {
-    title: "Compétences psychosociales",
-    text: "Gestion des émotions, pensée critique et créative, prise de décision",
-  },
-];
+export default async function FormationPage() {
+  const c = await getPageContent("formation");
 
-const applications = [
-  {
-    title: "Posture professionnelle et relationnelle",
-    text: "Développer son assise et sa crédibilité, renforcer sa légitimité, trouver l'équilibre entre affirmation et coopération.",
-  },
-  {
-    title: "Transmission et accompagnement",
-    text: "Structurer ses messages, faciliter l'apprentissage, encourager l'autonomie et la responsabilisation.",
-  },
-  {
-    title: "Dynamique d'équipe",
-    text: "Créer un cadre clair, renforcer la confiance mutuelle, fluidifier la collaboration et soutenir l'engagement collectif.",
-  },
-  {
-    title: "Organisation et efficacité",
-    text: "Clarifier les responsabilités, prioriser efficacement, ajuster les modes de travail pour gagner en cohérence.",
-  },
-  {
-    title: "Développement et adaptation professionnelle",
-    text: "Mobiliser ses ressources, faire face aux changements, consolider sa capacité d'évolution.",
-  },
-];
-
-export default function FormationPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Formation"
-        title="Formation"
-        subtitle="Faire évoluer les pratiques — Réaliser le potentiel — Renforcer la dynamique"
+        eyebrow={c.header.eyebrow}
+        title={c.header.title}
+        subtitle={c.header.subtitle}
       />
 
-      {/* Intro */}
       <section className="py-20">
         <div className="container-prose">
-          <p className="body-text">
-            Vous souhaitez monter en compétences avec votre équipe ou
-            développer un savoir-faire spécifique ? Je propose des formations
-            pour progresser avec sens, engagement et efficacité, dans un cadre
-            professionnel ou associatif. Mes interventions sont conçues pour
-            répondre à vos besoins en tenant compte de vos réalités de terrain
-            (de la 1/2 journée à plusieurs jours), toujours avec une approche
-            participative et ancrée dans l'expérience.
-          </p>
+          <p className="body-text">{c.intro}</p>
         </div>
       </section>
 
-      {/* Domaines d'expertise */}
       <section className="py-16 bg-white border-y border-sand-200">
         <div className="container-full">
           <div className="text-center mb-12">
-            <span className="eyebrow">Mes domaines d'expertise</span>
-            <h2 className="h-section mt-3 text-balance">
-              Trois piliers pour vos formations
-            </h2>
+            <span className="eyebrow">{c.expertises.eyebrow}</span>
+            <h2 className="h-section mt-3 text-balance">{c.expertises.title}</h2>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
-            {expertises.map((e, i) => (
+            {c.expertises.items.map((e, i) => (
               <div
-                key={e.title}
+                key={i}
                 className="rounded-2xl border border-sand-200 bg-sand-50 p-8 hover:border-bo/40 hover:shadow-md transition-all"
               >
                 <div className="font-serif text-3xl text-accent-500 mb-3">
@@ -100,19 +55,14 @@ export default function FormationPage() {
         </div>
       </section>
 
-      {/* Applications possibles */}
       <section className="py-20">
         <div className="container-full grid lg:grid-cols-[1fr_1.4fr] gap-12 lg:gap-16 items-start">
           <div className="lg:sticky lg:top-32">
-            <span className="eyebrow">Applications possibles</span>
+            <span className="eyebrow">{c.applications.eyebrow}</span>
             <h2 className="h-section mt-4 text-balance">
-              Des formations adaptées à vos enjeux
+              {c.applications.title}
             </h2>
-            <p className="body-text mt-6">
-              Chaque intervention est conçue sur mesure, après un échange
-              approfondi pour comprendre vos attentes, votre contexte et les
-              résultats visés.
-            </p>
+            <p className="body-text mt-6">{c.applications.intro}</p>
             <div className="relative mt-10 hidden lg:block">
               <Image
                 src="/illustrations/growth.png"
@@ -125,9 +75,9 @@ export default function FormationPage() {
           </div>
 
           <ul className="space-y-5">
-            {applications.map((a, i) => (
+            {c.applications.items.map((a, i) => (
               <li
-                key={a.title}
+                key={i}
                 className="rounded-2xl border border-sand-200 bg-white p-6 md:p-7 hover:border-bo/40 hover:shadow-md transition-all"
               >
                 <div className="flex items-baseline gap-4">
@@ -147,32 +97,26 @@ export default function FormationPage() {
         </div>
       </section>
 
-      {/* Quote */}
       <section className="py-20 bg-accent-100/40">
         <div className="container-prose">
           <QuoteBlock
             variant="centered"
-            quote="Apprendre c'est vouloir progresser, c'est être animé d'une passion, d'une soif intense de découverte"
-            author="Jiddu Krishnamurti"
+            quote={c.quote.text}
+            author={c.quote.author}
           />
         </div>
       </section>
 
-      {/* CTA */}
       <section className="py-20">
         <div className="container-prose text-center">
-          <h2 className="h-section text-balance">
-            Vous avez un projet de formation ?
-          </h2>
-          <p className="lead mt-5">
-            Parlons-en ensemble pour construire une intervention sur mesure.
-          </p>
+          <h2 className="h-section text-balance">{c.cta.title}</h2>
+          <p className="lead mt-5">{c.cta.lead}</p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
             <Link href="/contact" className="btn-primary">
-              Demander un devis
+              {c.cta.primaryButton}
             </Link>
             <Link href="/tarifs" className="btn-secondary">
-              Tarifs formation
+              {c.cta.secondaryButton}
             </Link>
           </div>
         </div>
