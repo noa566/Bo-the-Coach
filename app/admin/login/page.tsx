@@ -7,7 +7,7 @@ import {
   signInWithEmailAndPassword,
   type AuthError,
 } from "firebase/auth";
-import { auth } from "@/lib/firebase";
+import { getFirebaseAuth } from "@/lib/firebase";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -17,7 +17,7 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(getFirebaseAuth(), (user) => {
       if (user) router.replace("/admin");
     });
     return unsubscribe;
@@ -28,7 +28,7 @@ export default function LoginPage() {
     setError(null);
     setLoading(true);
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      await signInWithEmailAndPassword(getFirebaseAuth(), email, password);
       router.replace("/admin");
     } catch (err) {
       const code = (err as AuthError).code ?? "auth/unknown";

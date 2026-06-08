@@ -1,5 +1,5 @@
 import { doc, getDoc, setDoc } from "firebase/firestore";
-import { db } from "./firebase";
+import { getDb, isFirebaseConfigured } from "./firebase";
 
 export type HomeContent = {
   hero: {
@@ -119,8 +119,11 @@ const HOME_DOC_ID = "home";
  * Falls back to defaults entirely if Firestore is unreachable.
  */
 export async function getHomeContent(): Promise<HomeContent> {
+  if (!isFirebaseConfigured()) {
+    return defaultHomeContent;
+  }
   try {
-    const ref = doc(db, CONTENT_COLLECTION, HOME_DOC_ID);
+    const ref = doc(getDb(), CONTENT_COLLECTION, HOME_DOC_ID);
     const snap = await getDoc(ref);
     if (!snap.exists()) return defaultHomeContent;
     const data = snap.data() as Partial<HomeContent>;
@@ -136,7 +139,7 @@ export async function getHomeContent(): Promise<HomeContent> {
  * Requires the caller to be authenticated (enforced by Firestore Rules).
  */
 export async function saveHomeContent(content: HomeContent): Promise<void> {
-  const ref = doc(db, CONTENT_COLLECTION, HOME_DOC_ID);
+  const ref = doc(getDb(), CONTENT_COLLECTION, HOME_DOC_ID);
   await setDoc(ref, content, { merge: false });
 }
 

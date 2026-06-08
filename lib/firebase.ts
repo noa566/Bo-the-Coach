@@ -12,14 +12,31 @@ const firebaseConfig = {
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
-let app: FirebaseApp;
-
-if (!getApps().length) {
-  app = initializeApp(firebaseConfig);
-} else {
-  app = getApps()[0]!;
+/**
+ * Lazily initializes the Firebase app. Throws a clear error if the API key
+ * is missing so the failure mode is obvious instead of a cryptic
+ * `auth/invalid-api-key`.
+ */
+function getApp(): FirebaseApp {
+  const existing = getApps()[0];
+  if (existing) return existing;
+  if (!firebaseConfig.apiKey) {
+    throw new Error(
+      "Firebase env vars are missing. Set NEXT_PUBLIC_FIREBASE_* in .env.local (locally) and in Vercel project settings (production).",
+    );
+  }
+  return initializeApp(firebaseConfig);
 }
 
-export const firebaseApp: FirebaseApp = app;
-export const auth: Auth = getAuth(app);
-export const db: Firestore = getFirestore(app);
+export function getFirebaseAuth(): Auth {
+  return getAuth(getApp());
+}
+
+export function getDb(): Firestore {
+  return getFirestore(getApp());
+}
+
+/** True when all required Firebase env vars are present. */
+export function isFirebaseConfigured(): boolean {
+  return Boolean(firebaseConfig.apiKey && firebaseConfig.projectId);
+}

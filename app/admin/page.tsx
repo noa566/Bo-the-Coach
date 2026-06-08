@@ -10,7 +10,7 @@ import {
   type ReactNode,
 } from "react";
 import { onAuthStateChanged, signOut, type User } from "firebase/auth";
-import { auth } from "@/lib/firebase";
+import { getFirebaseAuth } from "@/lib/firebase";
 import {
   defaultHomeContent,
   getHomeContent,
@@ -33,7 +33,7 @@ export default function AdminDashboard() {
   const [save, setSave] = useState<SaveState>({ kind: "idle" });
 
   useEffect(() => {
-    const unsub = onAuthStateChanged(auth, (u) => {
+    const unsub = onAuthStateChanged(getFirebaseAuth(), (u) => {
       setUser(u);
       setAuthChecked(true);
       if (!u) router.replace("/admin/login");
@@ -126,7 +126,7 @@ export default function AdminDashboard() {
               Voir le site ↗
             </Link>
             <button
-              onClick={() => signOut(auth)}
+              onClick={() => signOut(getFirebaseAuth())}
               className="text-sm rounded-lg border border-slate-300 px-3 py-1.5 hover:bg-slate-100"
             >
               Déconnexion
