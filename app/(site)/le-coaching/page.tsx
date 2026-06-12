@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import PageHeader from "@/components/PageHeader";
 import QuoteBlock from "@/components/QuoteBlock";
+import Reveal from "@/components/Reveal";
 import { getPageContent } from "@/lib/content";
 
 export const dynamic = "force-dynamic";
@@ -38,9 +39,9 @@ export default async function LeCoachingPage() {
           </div>
           <ul className="grid md:grid-cols-2 gap-4">
             {c.domains.items.map((d, i) => (
+              <Reveal key={i} variant="up" delay={(i % 2) * 100}>
               <li
-                key={i}
-                className="rounded-2xl border border-sand-200 bg-sand-50 p-6 transition-all hover:border-bo/40 hover:shadow-md"
+                className="rounded-2xl border border-sand-200 bg-sand-50 p-6 transition-all duration-300 hover:border-bo/40 hover:shadow-lg hover:-translate-y-0.5 h-full"
               >
                 <span className="font-serif text-xs text-bo-dark">
                   0{i + 1}
@@ -52,6 +53,7 @@ export default async function LeCoachingPage() {
                   {d.text}
                 </p>
               </li>
+              </Reveal>
             ))}
           </ul>
         </div>
@@ -80,13 +82,11 @@ export default async function LeCoachingPage() {
                 "bg-sage-600 text-white",
               ];
               return (
-                <li
-                  key={i}
-                  className="grid md:grid-cols-[40px_1fr] gap-4 md:gap-8"
-                >
+                <Reveal key={i} variant="left" delay={i * 140}>
+                <li className="grid md:grid-cols-[40px_1fr] gap-4 md:gap-8">
                   <div className="relative">
                     <div
-                      className={`w-8 h-8 rounded-full text-sm font-medium flex items-center justify-center ${
+                      className={`w-8 h-8 rounded-full text-sm font-medium flex items-center justify-center transition-transform hover:scale-110 ${
                         stepColors[i % stepColors.length]
                       }`}
                     >
@@ -98,6 +98,7 @@ export default async function LeCoachingPage() {
                     <p className="body-text">{step.text}</p>
                   </div>
                 </li>
+                </Reveal>
               );
             })}
           </ol>

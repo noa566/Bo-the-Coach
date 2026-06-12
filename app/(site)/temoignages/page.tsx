@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import PageHeader from "@/components/PageHeader";
+import Reveal from "@/components/Reveal";
 import { getPageContent } from "@/lib/content";
 
 export const dynamic = "force-dynamic";
@@ -26,11 +27,15 @@ export default async function TemoignagesPage() {
         <div className="container-full">
           <div className="grid md:grid-cols-2 gap-5 md:gap-6">
             {c.testimonials.map((t, i) => (
-              <figure
+              <Reveal
                 key={i}
-                className={`rounded-3xl border border-sand-200 bg-white p-7 md:p-8 hover:shadow-lg hover:border-bo/30 transition-all relative ${
-                  t.long ? "md:col-span-2" : ""
-                }`}
+                variant="up"
+                delay={(i % 4) * 100}
+                as="div"
+                className={t.long ? "md:col-span-2" : ""}
+              >
+              <figure
+                className="rounded-3xl border border-sand-200 bg-white p-7 md:p-8 hover:shadow-xl hover:border-bo/30 hover:-translate-y-1 transition-all duration-300 relative h-full"
               >
                 <svg
                   width="32"
@@ -57,6 +62,7 @@ export default async function TemoignagesPage() {
                   <span className="font-medium text-ink">{t.author}</span>
                 </figcaption>
               </figure>
+              </Reveal>
             ))}
           </div>
         </div>

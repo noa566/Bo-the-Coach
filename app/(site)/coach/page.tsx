@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import PageHeader from "@/components/PageHeader";
 import QuoteBlock from "@/components/QuoteBlock";
+import Reveal from "@/components/Reveal";
 import { getPageContent } from "@/lib/content";
 
 export const dynamic = "force-dynamic";
@@ -43,9 +44,9 @@ export default async function CoachPage() {
 
           <div className="space-y-6">
             {c.intro.paragraphs.map((paragraph, i) => (
-              <p key={i} className="body-text">
-                {paragraph}
-              </p>
+              <Reveal key={i} variant="up" delay={i * 100}>
+                <p className="body-text">{paragraph}</p>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -54,18 +55,18 @@ export default async function CoachPage() {
       {/* Conviction / Engagement */}
       <section className="py-12 md:py-16 bg-white border-y border-sand-200">
         <div className="container-prose grid md:grid-cols-2 gap-10">
-          <div>
+          <Reveal variant="left">
             <span className="eyebrow">{c.conviction.eyebrow}</span>
             <p className="font-serif text-xl md:text-2xl leading-snug mt-4 text-balance">
               {c.conviction.text}
             </p>
-          </div>
-          <div>
+          </Reveal>
+          <Reveal variant="right" delay={120}>
             <span className="eyebrow">{c.engagement.eyebrow}</span>
             <p className="font-serif text-xl md:text-2xl leading-snug mt-4 text-balance">
               {c.engagement.text}
             </p>
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -93,10 +94,12 @@ export default async function CoachPage() {
             </h2>
             <ul className="mt-6 space-y-3">
               {c.formations.items.map((item, i) => (
-                <li key={i} className="flex items-start gap-3">
+                <Reveal key={i} variant="up" delay={i * 80}>
+                <li className="flex items-start gap-3 transition-colors hover:text-bo-dark">
                   <span className="mt-2 h-1.5 w-1.5 rounded-full bg-accent-500 shrink-0" />
                   <span className="body-text">{item}</span>
                 </li>
+                </Reveal>
               ))}
             </ul>
           </div>

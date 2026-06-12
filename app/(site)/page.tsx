@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import Reveal from "@/components/Reveal";
 import { getHomeContent } from "@/lib/content";
 
 export const dynamic = "force-dynamic";
@@ -84,9 +85,25 @@ export default async function HomePage() {
     <>
       {/* HERO */}
       <section className="relative -mt-24 pt-24 overflow-hidden bg-gradient-to-b from-sand-100 via-sand-50 to-sand-50">
-        <div className="container-full grid lg:grid-cols-2 gap-10 lg:gap-14 items-center py-10 md:py-16">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -top-10 -left-20 h-72 w-72 rounded-full bg-bo/20 halo animate-float-slow"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute top-1/3 -right-24 h-80 w-80 rounded-full bg-accent-200/40 halo animate-float"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute bottom-10 left-1/3 h-40 w-40 rounded-full bg-joy-200/50 halo animate-pulse-soft"
+        />
+
+        <div className="container-full grid lg:grid-cols-2 gap-10 lg:gap-14 items-center py-10 md:py-16 relative">
           <div className="animate-fade-in-up">
-            <span className="eyebrow mb-5">{content.hero.eyebrow}</span>
+            <span className="eyebrow mb-5 inline-flex items-center gap-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-joy-500 animate-pulse-soft" />
+              {content.hero.eyebrow}
+            </span>
             <h1 className="h-display mt-4 text-balance">
               {content.hero.titleStart}{" "}
               <span className="text-accent-500 italic">
@@ -98,7 +115,7 @@ export default async function HomePage() {
               {content.hero.lead}
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-4">
-              <Link href="/contact" className="btn-primary">
+              <Link href="/contact" className="btn-primary shine-on-hover group">
                 {content.hero.ctaPrimary}
                 <svg
                   width="16"
@@ -106,6 +123,7 @@ export default async function HomePage() {
                   viewBox="0 0 16 16"
                   fill="none"
                   aria-hidden
+                  className="transition-transform group-hover:translate-x-1"
                 >
                   <path
                     d="M3 8h10m-4-4l4 4-4 4"
@@ -123,7 +141,12 @@ export default async function HomePage() {
 
             <dl className="mt-10 grid grid-cols-3 gap-6 max-w-md">
               {content.hero.stats.map((stat, idx) => (
-                <div key={idx}>
+                <Reveal
+                  key={idx}
+                  variant="up"
+                  delay={150 + idx * 120}
+                  as="div"
+                >
                   <dt
                     className={`font-serif text-3xl ${
                       STAT_COLORS[idx % STAT_COLORS.length]
@@ -132,14 +155,14 @@ export default async function HomePage() {
                     {stat.value}
                   </dt>
                   <dd className="text-xs text-ink-muted mt-1">{stat.label}</dd>
-                </div>
+                </Reveal>
               ))}
             </dl>
           </div>
 
           <div className="relative animate-fade-in">
-            <div className="absolute -inset-6 bg-accent-100/40 rounded-[3rem] blur-2xl" />
-            <div className="relative rounded-[2rem] overflow-hidden shadow-xl border border-sand-200">
+            <div className="absolute -inset-6 bg-accent-100/40 rounded-[3rem] blur-2xl animate-pulse-soft" />
+            <div className="relative rounded-[2rem] overflow-hidden shadow-xl border border-sand-200 transition-transform duration-500 hover:-translate-y-1 hover:shadow-2xl">
               <Image
                 src="/illustrations/hero.png"
                 alt="Illustration d'un chemin vers le soleil levant"
@@ -151,11 +174,36 @@ export default async function HomePage() {
             </div>
           </div>
         </div>
+
+        {/* Indicateur scroll */}
+        <div className="hidden md:flex justify-center pb-6">
+          <div className="flex flex-col items-center gap-1 text-ink-muted">
+            <span className="text-[10px] uppercase tracking-widest">
+              Découvrir
+            </span>
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 16 16"
+              fill="none"
+              className="animate-bounce-soft"
+              aria-hidden
+            >
+              <path
+                d="M3 6l5 5 5-5"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
+        </div>
       </section>
 
       {/* INTRODUCTION / PHILOSOPHIE */}
       <section className="py-14 md:py-20">
-        <div className="container-prose text-center">
+        <Reveal variant="up" className="container-prose text-center" as="div">
           <span className="eyebrow">{content.philosophy.eyebrow}</span>
           <p className="font-serif text-2xl md:text-3xl leading-relaxed mt-5 text-balance text-ink">
             {content.philosophy.quote}
@@ -163,53 +211,58 @@ export default async function HomePage() {
           <p className="text-sm text-ink-muted mt-4 italic">
             {content.philosophy.author}
           </p>
-        </div>
+        </Reveal>
       </section>
 
       {/* 3 PRESTATIONS */}
       <section className="py-14 md:py-20 bg-white border-y border-sand-200">
         <div className="container-full">
-          <div className="text-center max-w-2xl mx-auto mb-10 md:mb-12">
+          <Reveal
+            variant="up"
+            className="text-center max-w-2xl mx-auto mb-10 md:mb-12"
+            as="div"
+          >
             <span className="eyebrow">{content.services.eyebrow}</span>
             <h2 className="h-section mt-3 text-balance">
               {content.services.title}
             </h2>
             <p className="body-text mt-4">{content.services.intro}</p>
-          </div>
+          </Reveal>
 
           <div className="grid md:grid-cols-3 gap-6 md:gap-8">
             {content.services.items.map((item, idx) => (
-              <Link
-                key={idx}
-                href={SERVICE_LINKS[idx] ?? "/coaching"}
-                className="card group block"
-              >
-                <div
-                  className={`w-12 h-12 rounded-full flex items-center justify-center mb-5 transition-colors ${SERVICE_BUBBLE_CLASSES[idx]}`}
+              <Reveal key={idx} variant="up" delay={idx * 120} as="div">
+                <Link
+                  href={SERVICE_LINKS[idx] ?? "/coaching"}
+                  className="card group block h-full"
                 >
-                  {SERVICE_ICONS[idx]}
-                </div>
-                <h3 className="h-sub mb-3">{item.title}</h3>
-                <p className="body-text mb-5">{item.description}</p>
-                <span className="btn-ghost">
-                  {item.cta}
-                  <svg
-                    width="14"
-                    height="14"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                    className="transition-transform group-hover:translate-x-1"
+                  <div
+                    className={`w-12 h-12 rounded-full flex items-center justify-center mb-5 transition-all duration-300 group-hover:scale-110 group-hover:rotate-6 ${SERVICE_BUBBLE_CLASSES[idx]}`}
                   >
-                    <path
-                      d="M3 8h10m-4-4l4 4-4 4"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </span>
-              </Link>
+                    {SERVICE_ICONS[idx]}
+                  </div>
+                  <h3 className="h-sub mb-3">{item.title}</h3>
+                  <p className="body-text mb-5">{item.description}</p>
+                  <span className="btn-ghost">
+                    {item.cta}
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      className="transition-transform group-hover:translate-x-1"
+                    >
+                      <path
+                        d="M3 8h10m-4-4l4 4-4 4"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </span>
+                </Link>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -218,17 +271,17 @@ export default async function HomePage() {
       {/* APPROCHE */}
       <section className="py-14 md:py-20">
         <div className="container-full grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-          <div className="order-2 lg:order-1 relative">
-            <div className="absolute -inset-4 bg-bo/10 rounded-[2.5rem] blur-2xl" />
+          <Reveal variant="left" className="order-2 lg:order-1 relative" as="div">
+            <div className="absolute -inset-4 bg-bo/10 rounded-[2.5rem] blur-2xl animate-pulse-soft" />
             <Image
               src="/illustrations/coaching.png"
               alt="Illustration d'une conversation de coaching"
               width={800}
               height={800}
-              className="relative rounded-[2rem] w-full h-auto"
+              className="relative rounded-[2rem] w-full h-auto transition-transform duration-500 hover:scale-[1.02]"
             />
-          </div>
-          <div className="order-1 lg:order-2">
+          </Reveal>
+          <Reveal variant="right" className="order-1 lg:order-2" as="div">
             <span className="eyebrow">{content.approach.eyebrow}</span>
             <h2 className="h-section mt-3 text-balance">
               {content.approach.title}
@@ -240,18 +293,18 @@ export default async function HomePage() {
                 {content.approach.cta}
               </Link>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* CITATION */}
       <section className="py-12 md:py-16 bg-accent-100/40">
-        <div className="container-prose text-center">
+        <Reveal variant="scale" className="container-prose text-center" as="div">
           <svg
             width="36"
             height="36"
             viewBox="0 0 24 24"
-            className="mx-auto text-accent-400 mb-4"
+            className="mx-auto text-accent-400 mb-4 animate-float-slow"
             fill="currentColor"
           >
             <path d="M9 7H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2v2a2 2 0 0 1-2 2H4v2h1a4 4 0 0 0 4-4V7zm12 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2v2a2 2 0 0 1-2 2h-1v2h1a4 4 0 0 0 4-4V7z" />
@@ -262,23 +315,31 @@ export default async function HomePage() {
           <p className="mt-4 text-accent-600 italic">
             {content.citation.author}
           </p>
-        </div>
+        </Reveal>
       </section>
 
       {/* CTA */}
       <section className="py-14 md:py-20">
-        <div className="container-prose">
-          <div className="rounded-[2rem] bg-gradient-to-br from-bo to-bo-dark px-8 md:px-14 py-12 md:py-16 text-center text-sand-50 shadow-xl">
-            <h2 className="font-serif text-3xl md:text-4xl font-medium leading-tight text-balance">
+        <Reveal variant="up" className="container-prose" as="div">
+          <div className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-bo via-bo to-bo-dark px-8 md:px-14 py-12 md:py-16 text-center text-sand-50 shadow-xl bg-[length:200%_200%] animate-gradient-shift">
+            <div
+              aria-hidden
+              className="pointer-events-none absolute -top-10 -right-10 h-48 w-48 rounded-full bg-joy-400/30 halo animate-float"
+            />
+            <div
+              aria-hidden
+              className="pointer-events-none absolute -bottom-12 -left-12 h-56 w-56 rounded-full bg-accent-400/20 halo animate-float-slow"
+            />
+            <h2 className="relative font-serif text-3xl md:text-4xl font-medium leading-tight text-balance">
               {content.finalCta.title}
             </h2>
-            <p className="mt-4 text-sand-50/90 max-w-xl mx-auto text-balance">
+            <p className="relative mt-4 text-sand-50/90 max-w-xl mx-auto text-balance">
               {content.finalCta.description}
             </p>
-            <div className="mt-8">
+            <div className="relative mt-8">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 rounded-full bg-sand-50 px-8 py-4 text-sm font-medium text-bo-dark transition-all hover:bg-white hover:-translate-y-0.5 shadow-md"
+                className="shine-on-hover inline-flex items-center gap-2 rounded-full bg-sand-50 px-8 py-4 text-sm font-medium text-bo-dark transition-all hover:bg-white hover:-translate-y-0.5 shadow-md"
               >
                 {content.finalCta.button}
                 <svg
@@ -299,7 +360,7 @@ export default async function HomePage() {
               </Link>
             </div>
           </div>
-        </div>
+        </Reveal>
       </section>
     </>
   );

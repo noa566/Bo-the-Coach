@@ -65,16 +65,20 @@ export default function Navbar() {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className={`relative px-3 py-2 text-sm transition-colors ${
+                  className={`group relative px-3 py-2 text-sm transition-colors ${
                     isActive
                       ? "text-bo-dark font-medium"
                       : "text-ink-soft hover:text-bo-dark"
                   }`}
                 >
                   {item.label}
-                  {isActive && (
-                    <span className="absolute left-3 right-3 -bottom-0.5 h-px bg-bo-dark" />
-                  )}
+                  <span
+                    className={`pointer-events-none absolute left-3 right-3 -bottom-0.5 h-[2px] rounded-full bg-bo origin-left transition-transform duration-300 ${
+                      isActive
+                        ? "scale-x-100"
+                        : "scale-x-0 group-hover:scale-x-100"
+                    }`}
+                  />
                 </Link>
               </li>
             );

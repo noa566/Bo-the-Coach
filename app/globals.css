@@ -56,19 +56,19 @@
   }
 
   .btn-primary {
-    @apply inline-flex items-center gap-2 rounded-full bg-bo px-7 py-3.5 text-sm font-medium text-white shadow-sm transition-all hover:bg-bo-dark hover:shadow-md hover:-translate-y-0.5;
+    @apply relative overflow-hidden inline-flex items-center gap-2 rounded-full bg-bo px-7 py-3.5 text-sm font-medium text-white shadow-sm transition-all duration-300 hover:bg-bo-dark hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0;
   }
 
   .btn-secondary {
-    @apply inline-flex items-center gap-2 rounded-full border border-bo px-7 py-3.5 text-sm font-medium text-bo-dark transition-all hover:bg-bo hover:text-white;
+    @apply inline-flex items-center gap-2 rounded-full border border-bo px-7 py-3.5 text-sm font-medium text-bo-dark transition-all duration-300 hover:bg-bo hover:text-white hover:-translate-y-0.5 hover:shadow-md;
   }
 
   .btn-ghost {
-    @apply inline-flex items-center gap-2 text-sm font-medium text-ink underline-offset-4 hover:text-bo-dark hover:underline;
+    @apply inline-flex items-center gap-2 text-sm font-medium text-ink underline-offset-4 transition-colors hover:text-bo-dark hover:underline;
   }
 
   .card {
-    @apply rounded-2xl border border-sand-200 bg-white p-6 md:p-7 transition-all hover:border-bo/40 hover:shadow-lg;
+    @apply rounded-2xl border border-sand-200 bg-white p-6 md:p-7 transition-all duration-300 hover:border-bo/40 hover:shadow-xl hover:-translate-y-1;
   }
 
   .quote-block {
@@ -83,6 +83,39 @@
     content: "";
     @apply mx-auto mb-6 block h-1.5 w-1.5 rounded-full bg-joy-500;
   }
+
+  /* Underline animée sur les liens de la nav */
+  .nav-link {
+    @apply relative inline-flex items-center transition-colors;
+  }
+  .nav-link::after {
+    content: "";
+    @apply absolute left-0 -bottom-1 h-[2px] w-0 rounded-full bg-bo transition-all duration-300;
+  }
+  .nav-link:hover::after,
+  .nav-link[data-active="true"]::after {
+    @apply w-full;
+  }
+
+  /* Effet de brillance qui traverse l'élément */
+  .shine-on-hover {
+    @apply relative overflow-hidden;
+  }
+  .shine-on-hover::before {
+    content: "";
+    @apply pointer-events-none absolute inset-y-0 -left-1/3 w-1/3;
+    background: linear-gradient(
+      100deg,
+      transparent,
+      rgba(255, 255, 255, 0.55),
+      transparent
+    );
+    transform: translateX(-120%) skewX(-20deg);
+    transition: transform 0.9s ease;
+  }
+  .shine-on-hover:hover::before {
+    transform: translateX(420%) skewX(-20deg);
+  }
 }
 
 @layer utilities {
@@ -93,5 +126,22 @@
   .bg-grain {
     background-image: radial-gradient(rgba(176, 132, 79, 0.06) 1px, transparent 1px);
     background-size: 24px 24px;
+  }
+
+  /* Halo soft animé pour décor */
+  .halo {
+    filter: blur(40px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-float,
+    .animate-float-slow,
+    .animate-pulse-soft,
+    .animate-bounce-soft,
+    .animate-shine,
+    .animate-gradient-shift,
+    .animate-spin-slow {
+      animation: none !important;
+    }
   }
 }

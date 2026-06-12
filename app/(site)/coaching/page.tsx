@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import PageHeader from "@/components/PageHeader";
+import Reveal from "@/components/Reveal";
 import { getPageContent } from "@/lib/content";
 
 export const dynamic = "force-dynamic";
@@ -41,9 +42,8 @@ export default async function CoachingPage() {
                 "hover:border-sage-400",
               ];
               return (
-              <article
-                key={idx}
-                className={`rounded-3xl bg-white border border-sand-200 p-7 md:p-8 transition-all hover:shadow-lg flex flex-col ${
+              <Reveal key={idx} variant="up" delay={(idx % 2) * 120}><article
+                className={`rounded-3xl bg-white border border-sand-200 p-7 md:p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col h-full ${
                   borderHovers[idx % borderHovers.length]
                 }`}
               >
@@ -87,6 +87,7 @@ export default async function CoachingPage() {
                   ))}
                 </ul>
               </article>
+              </Reveal>
               );
             })}
           </div>

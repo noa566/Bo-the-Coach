@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import PageHeader from "@/components/PageHeader";
 import QuoteBlock from "@/components/QuoteBlock";
+import Reveal from "@/components/Reveal";
 import { getPageContent } from "@/lib/content";
 
 export const dynamic = "force-dynamic";
@@ -57,9 +58,9 @@ export default async function FormationPage() {
               ];
               const c2 = colors[i % colors.length]!;
               return (
+                <Reveal key={i} variant="up" delay={i * 120}>
                 <div
-                  key={i}
-                  className={`rounded-2xl border border-sand-200 p-8 hover:shadow-md transition-all ${c2.bg} ${c2.border}`}
+                  className={`rounded-2xl border border-sand-200 p-8 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 h-full ${c2.bg} ${c2.border}`}
                 >
                   <div className={`font-serif text-3xl mb-3 ${c2.number}`}>
                     0{i + 1}
@@ -69,6 +70,7 @@ export default async function FormationPage() {
                   </h3>
                   <p className="body-text text-[15px]">{e.text}</p>
                 </div>
+                </Reveal>
               );
             })}
           </div>
@@ -96,9 +98,9 @@ export default async function FormationPage() {
 
           <ul className="space-y-4">
             {c.applications.items.map((a, i) => (
+              <Reveal key={i} variant="right" delay={i * 90}>
               <li
-                key={i}
-                className="rounded-2xl border border-sand-200 bg-white p-6 md:p-7 hover:border-bo/40 hover:shadow-md transition-all"
+                className="rounded-2xl border border-sand-200 bg-white p-6 md:p-7 hover:border-bo/40 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
               >
                 <div className="flex items-baseline gap-4">
                   <span className="font-serif text-xl text-bo-dark shrink-0">
@@ -112,6 +114,7 @@ export default async function FormationPage() {
                   </div>
                 </div>
               </li>
+              </Reveal>
             ))}
           </ul>
         </div>

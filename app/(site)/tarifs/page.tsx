@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import PageHeader from "@/components/PageHeader";
+import Reveal from "@/components/Reveal";
 import { getPageContent } from "@/lib/content";
 
 export const dynamic = "force-dynamic";
@@ -26,16 +27,16 @@ export default async function TarifsPage() {
         <div className="container-full">
           <div className="grid md:grid-cols-3 gap-6 md:gap-8">
             {c.plans.map((p, idx) => (
+              <Reveal key={idx} variant="up" delay={idx * 150} as="div">
               <article
-                key={idx}
-                className={`relative rounded-3xl p-7 md:p-9 transition-all ${
+                className={`relative rounded-3xl p-7 md:p-9 transition-all duration-300 h-full ${
                   p.highlight
-                    ? "bg-gradient-to-br from-bo to-bo-dark text-sand-50 shadow-xl scale-100 md:scale-[1.03]"
-                    : "bg-white border border-sand-200 hover:border-bo/40 hover:shadow-lg"
+                    ? "bg-gradient-to-br from-bo via-bo to-bo-dark text-sand-50 shadow-xl scale-100 md:scale-[1.04] bg-[length:200%_200%] animate-gradient-shift hover:-translate-y-1 hover:shadow-2xl"
+                    : "bg-white border border-sand-200 hover:border-bo/40 hover:shadow-xl hover:-translate-y-1"
                 }`}
               >
                 {p.highlight && p.highlightLabel && (
-                  <span className="absolute top-5 right-5 text-[11px] uppercase tracking-widest bg-joy-400 text-bo-dark px-3 py-1.5 rounded-full font-medium shadow-sm">
+                  <span className="absolute top-5 right-5 text-[11px] uppercase tracking-widest bg-joy-400 text-bo-dark px-3 py-1.5 rounded-full font-medium shadow-sm shine-on-hover animate-pulse-soft">
                     {p.highlightLabel}
                   </span>
                 )}
@@ -95,15 +96,20 @@ export default async function TarifsPage() {
                   </Link>
                 </div>
               </article>
+              </Reveal>
             ))}
           </div>
 
-          <div className="mt-10 max-w-2xl mx-auto rounded-2xl bg-accent-100/50 border border-accent-200 p-7 text-center">
+          <Reveal
+            variant="up"
+            className="mt-10 max-w-2xl mx-auto rounded-2xl bg-accent-100/50 border border-accent-200 p-7 text-center transition-all hover:shadow-lg hover:border-accent-300"
+            as="div"
+          >
             <h3 className="font-serif text-xl font-medium mb-3">
               {c.founding.title}
             </h3>
             <p className="body-text">{c.founding.text}</p>
-          </div>
+          </Reveal>
         </div>
       </section>
     </>
