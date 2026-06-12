@@ -81,7 +81,7 @@
 
   .divider-dot::before {
     content: "";
-    @apply mx-auto mb-6 block h-1.5 w-1.5 rounded-full bg-bo;
+    @apply mx-auto mb-6 block h-1.5 w-1.5 rounded-full bg-joy-500;
   }
 }
 

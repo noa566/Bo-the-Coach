@@ -27,13 +27,32 @@ export default async function CoachingPage() {
           <p className="lead text-center max-w-3xl mx-auto">{c.intro}</p>
 
           <div className="mt-16 grid md:grid-cols-2 gap-8">
-            {c.orientations.map((o, idx) => (
+            {c.orientations.map((o, idx) => {
+              const numberColors = [
+                "text-bo",
+                "text-accent-500",
+                "text-joy-500",
+                "text-sage-600",
+              ];
+              const borderHovers = [
+                "hover:border-bo/40",
+                "hover:border-accent-300",
+                "hover:border-joy-400",
+                "hover:border-sage-400",
+              ];
+              return (
               <article
                 key={idx}
-                className="rounded-3xl bg-white border border-sand-200 p-8 md:p-10 transition-all hover:shadow-lg hover:border-bo/30 flex flex-col"
+                className={`rounded-3xl bg-white border border-sand-200 p-8 md:p-10 transition-all hover:shadow-lg flex flex-col ${
+                  borderHovers[idx % borderHovers.length]
+                }`}
               >
                 <div className="flex items-baseline gap-4 mb-2">
-                  <span className="font-serif text-3xl text-bo-dark">
+                  <span
+                    className={`font-serif text-3xl ${
+                      numberColors[idx % numberColors.length]
+                    }`}
+                  >
                     {o.number}
                   </span>
                   <div className="h-px flex-1 bg-sand-200" />
@@ -68,7 +87,8 @@ export default async function CoachingPage() {
                   ))}
                 </ul>
               </article>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

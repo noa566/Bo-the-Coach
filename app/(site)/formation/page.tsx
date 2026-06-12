@@ -37,20 +37,40 @@ export default async function FormationPage() {
             <h2 className="h-section mt-3 text-balance">{c.expertises.title}</h2>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
-            {c.expertises.items.map((e, i) => (
-              <div
-                key={i}
-                className="rounded-2xl border border-sand-200 bg-sand-50 p-8 hover:border-bo/40 hover:shadow-md transition-all"
-              >
-                <div className="font-serif text-3xl text-accent-500 mb-3">
-                  0{i + 1}
+            {c.expertises.items.map((e, i) => {
+              const colors = [
+                {
+                  number: "text-bo",
+                  border: "hover:border-bo/40",
+                  bg: "bg-sand-50",
+                },
+                {
+                  number: "text-accent-500",
+                  border: "hover:border-accent-300",
+                  bg: "bg-accent-50",
+                },
+                {
+                  number: "text-sage-600",
+                  border: "hover:border-sage-400",
+                  bg: "bg-sage-50",
+                },
+              ];
+              const c2 = colors[i % colors.length]!;
+              return (
+                <div
+                  key={i}
+                  className={`rounded-2xl border border-sand-200 p-8 hover:shadow-md transition-all ${c2.bg} ${c2.border}`}
+                >
+                  <div className={`font-serif text-3xl mb-3 ${c2.number}`}>
+                    0{i + 1}
+                  </div>
+                  <h3 className="font-serif text-xl font-medium mb-3">
+                    {e.title}
+                  </h3>
+                  <p className="body-text text-[15px]">{e.text}</p>
                 </div>
-                <h3 className="font-serif text-xl font-medium mb-3">
-                  {e.title}
-                </h3>
-                <p className="body-text text-[15px]">{e.text}</p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

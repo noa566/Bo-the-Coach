@@ -73,22 +73,33 @@ export default async function LeCoachingPage() {
           <ol className="mt-12 relative space-y-10">
             <div className="absolute left-[15px] top-2 bottom-2 w-px bg-accent-200 hidden md:block" />
 
-            {c.process.steps.map((step, i) => (
-              <li
-                key={i}
-                className="grid md:grid-cols-[40px_1fr] gap-4 md:gap-8"
-              >
-                <div className="relative">
-                  <div className="w-8 h-8 rounded-full bg-accent-500 text-white text-sm font-medium flex items-center justify-center">
-                    {i + 1}
+            {c.process.steps.map((step, i) => {
+              const stepColors = [
+                "bg-bo text-white",
+                "bg-joy-500 text-bo-dark",
+                "bg-sage-600 text-white",
+              ];
+              return (
+                <li
+                  key={i}
+                  className="grid md:grid-cols-[40px_1fr] gap-4 md:gap-8"
+                >
+                  <div className="relative">
+                    <div
+                      className={`w-8 h-8 rounded-full text-sm font-medium flex items-center justify-center ${
+                        stepColors[i % stepColors.length]
+                      }`}
+                    >
+                      {i + 1}
+                    </div>
                   </div>
-                </div>
-                <div>
-                  <h3 className="font-serif text-xl mb-2">{step.title}</h3>
-                  <p className="body-text">{step.text}</p>
-                </div>
-              </li>
-            ))}
+                  <div>
+                    <h3 className="font-serif text-xl mb-2">{step.title}</h3>
+                    <p className="body-text">{step.text}</p>
+                  </div>
+                </li>
+              );
+            })}
           </ol>
         </div>
       </section>

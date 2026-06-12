@@ -49,7 +49,7 @@ const SERVICE_ICONS = [
       height="22"
       viewBox="0 0 24 24"
       fill="none"
-      className="text-bo-dark"
+      className="text-sage-700"
     >
       <path
         d="M3 7l9-4 9 4-9 4-9-4z"
@@ -72,8 +72,10 @@ const SERVICE_LINKS = ["/coaching", "/coaching", "/formation"];
 const SERVICE_BUBBLE_CLASSES = [
   "bg-bo/15 group-hover:bg-bo/25",
   "bg-accent-100 group-hover:bg-accent-200",
-  "bg-bo/15 group-hover:bg-bo/25",
+  "bg-sage-100 group-hover:bg-sage-200",
 ];
+
+const STAT_COLORS = ["text-bo-dark", "text-accent-600", "text-sage-700"];
 
 export default async function HomePage() {
   const content = await getHomeContent();
@@ -122,7 +124,11 @@ export default async function HomePage() {
             <dl className="mt-14 grid grid-cols-3 gap-6 max-w-md">
               {content.hero.stats.map((stat, idx) => (
                 <div key={idx}>
-                  <dt className="font-serif text-3xl text-bo-dark">
+                  <dt
+                    className={`font-serif text-3xl ${
+                      STAT_COLORS[idx % STAT_COLORS.length]
+                    }`}
+                  >
                     {stat.value}
                   </dt>
                   <dd className="text-xs text-ink-muted mt-1">{stat.label}</dd>

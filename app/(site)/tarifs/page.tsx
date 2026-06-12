@@ -35,7 +35,7 @@ export default async function TarifsPage() {
                 }`}
               >
                 {p.highlight && p.highlightLabel && (
-                  <span className="absolute top-5 right-5 text-[11px] uppercase tracking-widest bg-sand-50/20 text-sand-50 px-3 py-1 rounded-full">
+                  <span className="absolute top-5 right-5 text-[11px] uppercase tracking-widest bg-joy-400 text-bo-dark px-3 py-1.5 rounded-full font-medium shadow-sm">
                     {p.highlightLabel}
                   </span>
                 )}
