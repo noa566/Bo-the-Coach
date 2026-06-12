@@ -218,12 +218,6 @@ export function HeaderFields({
 }) {
   return (
     <>
-      <Field label="Pré-titre (eyebrow)">
-        <Input
-          value={value.eyebrow}
-          onChange={(v) => onChange({ ...value, eyebrow: v })}
-        />
-      </Field>
       <Field label="Titre">
         <Input
           value={value.title}
