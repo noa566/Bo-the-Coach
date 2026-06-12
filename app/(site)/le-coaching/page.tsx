@@ -23,20 +23,20 @@ export default async function LeCoachingPage() {
         subtitle={c.header.subtitle}
       />
 
-      <section className="py-20">
+      <section className="py-10 md:py-14">
         <div className="container-prose">
           <span className="eyebrow">{c.whatIs.eyebrow}</span>
-          <p className="body-text mt-4">{c.whatIs.text}</p>
+          <p className="body-text mt-3">{c.whatIs.text}</p>
         </div>
       </section>
 
-      <section className="py-16 bg-white border-y border-sand-200">
+      <section className="py-12 md:py-16 bg-white border-y border-sand-200">
         <div className="container-prose">
-          <div className="text-center mb-12">
+          <div className="text-center mb-10">
             <span className="eyebrow">{c.domains.eyebrow}</span>
             <h2 className="h-section mt-3 text-balance">{c.domains.title}</h2>
           </div>
-          <ul className="grid md:grid-cols-2 gap-5">
+          <ul className="grid md:grid-cols-2 gap-4">
             {c.domains.items.map((d, i) => (
               <li
                 key={i}
@@ -57,20 +57,20 @@ export default async function LeCoachingPage() {
         </div>
       </section>
 
-      <section className="py-20">
+      <section className="py-10 md:py-14">
         <div className="container-prose">
           <span className="eyebrow">{c.deontology.eyebrow}</span>
-          <h2 className="h-sub mt-4 text-balance">{c.deontology.headline}</h2>
-          <p className="body-text mt-6">{c.deontology.paragraph}</p>
+          <h2 className="h-sub mt-3 text-balance">{c.deontology.headline}</h2>
+          <p className="body-text mt-4">{c.deontology.paragraph}</p>
         </div>
       </section>
 
-      <section className="py-20 bg-accent-100/40">
+      <section className="py-12 md:py-16 bg-accent-100/40">
         <div className="container-prose">
           <span className="eyebrow">{c.process.eyebrow}</span>
-          <h2 className="h-section mt-4 text-balance">{c.process.title}</h2>
+          <h2 className="h-section mt-3 text-balance">{c.process.title}</h2>
 
-          <ol className="mt-12 relative space-y-10">
+          <ol className="mt-8 relative space-y-8">
             <div className="absolute left-[15px] top-2 bottom-2 w-px bg-accent-200 hidden md:block" />
 
             {c.process.steps.map((step, i) => {
@@ -104,7 +104,7 @@ export default async function LeCoachingPage() {
         </div>
       </section>
 
-      <section className="py-20">
+      <section className="py-10 md:py-14">
         <div className="container-prose">
           <QuoteBlock
             variant="centered"
@@ -114,11 +114,11 @@ export default async function LeCoachingPage() {
         </div>
       </section>
 
-      <section className="py-20">
+      <section className="py-12 md:py-16">
         <div className="container-prose text-center">
           <h2 className="h-section text-balance">{c.cta.title}</h2>
-          <p className="lead mt-5">{c.cta.lead}</p>
-          <div className="mt-10 flex flex-wrap justify-center gap-4">
+          <p className="lead mt-4">{c.cta.lead}</p>
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link href="/contact" className="btn-primary">
               {c.cta.primaryButton}
             </Link>

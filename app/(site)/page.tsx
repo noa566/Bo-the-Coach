@@ -84,7 +84,7 @@ export default async function HomePage() {
     <>
       {/* HERO */}
       <section className="relative -mt-24 pt-24 overflow-hidden bg-gradient-to-b from-sand-100 via-sand-50 to-sand-50">
-        <div className="container-full grid lg:grid-cols-2 gap-12 lg:gap-16 items-center py-16 md:py-24">
+        <div className="container-full grid lg:grid-cols-2 gap-10 lg:gap-14 items-center py-10 md:py-16">
           <div className="animate-fade-in-up">
             <span className="eyebrow mb-5">{content.hero.eyebrow}</span>
             <h1 className="h-display mt-4 text-balance">
@@ -94,10 +94,10 @@ export default async function HomePage() {
               </span>
               {content.hero.titleEnd}
             </h1>
-            <p className="lead mt-6 max-w-xl text-balance">
+            <p className="lead mt-5 max-w-xl text-balance">
               {content.hero.lead}
             </p>
-            <div className="mt-10 flex flex-wrap items-center gap-4">
+            <div className="mt-8 flex flex-wrap items-center gap-4">
               <Link href="/contact" className="btn-primary">
                 {content.hero.ctaPrimary}
                 <svg
@@ -121,7 +121,7 @@ export default async function HomePage() {
               </Link>
             </div>
 
-            <dl className="mt-14 grid grid-cols-3 gap-6 max-w-md">
+            <dl className="mt-10 grid grid-cols-3 gap-6 max-w-md">
               {content.hero.stats.map((stat, idx) => (
                 <div key={idx}>
                   <dt
@@ -154,10 +154,10 @@ export default async function HomePage() {
       </section>
 
       {/* INTRODUCTION / PHILOSOPHIE */}
-      <section className="py-20 md:py-28">
+      <section className="py-14 md:py-20">
         <div className="container-prose text-center">
           <span className="eyebrow">{content.philosophy.eyebrow}</span>
-          <p className="font-serif text-2xl md:text-3xl leading-relaxed mt-6 text-balance text-ink">
+          <p className="font-serif text-2xl md:text-3xl leading-relaxed mt-5 text-balance text-ink">
             {content.philosophy.quote}
           </p>
           <p className="text-sm text-ink-muted mt-4 italic">
@@ -167,14 +167,14 @@ export default async function HomePage() {
       </section>
 
       {/* 3 PRESTATIONS */}
-      <section className="py-20 md:py-24 bg-white border-y border-sand-200">
+      <section className="py-14 md:py-20 bg-white border-y border-sand-200">
         <div className="container-full">
-          <div className="text-center max-w-2xl mx-auto mb-16">
+          <div className="text-center max-w-2xl mx-auto mb-10 md:mb-12">
             <span className="eyebrow">{content.services.eyebrow}</span>
-            <h2 className="h-section mt-4 text-balance">
+            <h2 className="h-section mt-3 text-balance">
               {content.services.title}
             </h2>
-            <p className="body-text mt-5">{content.services.intro}</p>
+            <p className="body-text mt-4">{content.services.intro}</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6 md:gap-8">
@@ -185,12 +185,12 @@ export default async function HomePage() {
                 className="card group block"
               >
                 <div
-                  className={`w-12 h-12 rounded-full flex items-center justify-center mb-6 transition-colors ${SERVICE_BUBBLE_CLASSES[idx]}`}
+                  className={`w-12 h-12 rounded-full flex items-center justify-center mb-5 transition-colors ${SERVICE_BUBBLE_CLASSES[idx]}`}
                 >
                   {SERVICE_ICONS[idx]}
                 </div>
                 <h3 className="h-sub mb-3">{item.title}</h3>
-                <p className="body-text mb-6">{item.description}</p>
+                <p className="body-text mb-5">{item.description}</p>
                 <span className="btn-ghost">
                   {item.cta}
                   <svg
@@ -216,8 +216,8 @@ export default async function HomePage() {
       </section>
 
       {/* APPROCHE */}
-      <section className="py-20 md:py-28">
-        <div className="container-full grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <section className="py-14 md:py-20">
+        <div className="container-full grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           <div className="order-2 lg:order-1 relative">
             <div className="absolute -inset-4 bg-bo/10 rounded-[2.5rem] blur-2xl" />
             <Image
@@ -230,12 +230,12 @@ export default async function HomePage() {
           </div>
           <div className="order-1 lg:order-2">
             <span className="eyebrow">{content.approach.eyebrow}</span>
-            <h2 className="h-section mt-4 text-balance">
+            <h2 className="h-section mt-3 text-balance">
               {content.approach.title}
             </h2>
-            <p className="body-text mt-6">{content.approach.paragraph1}</p>
-            <p className="body-text mt-4">{content.approach.paragraph2}</p>
-            <div className="mt-10">
+            <p className="body-text mt-5">{content.approach.paragraph1}</p>
+            <p className="body-text mt-3">{content.approach.paragraph2}</p>
+            <div className="mt-8">
               <Link href="/coach" className="btn-secondary">
                 {content.approach.cta}
               </Link>
@@ -245,13 +245,13 @@ export default async function HomePage() {
       </section>
 
       {/* CITATION */}
-      <section className="py-20 md:py-24 bg-accent-100/40">
+      <section className="py-12 md:py-16 bg-accent-100/40">
         <div className="container-prose text-center">
           <svg
-            width="40"
-            height="40"
+            width="36"
+            height="36"
             viewBox="0 0 24 24"
-            className="mx-auto text-accent-400 mb-6"
+            className="mx-auto text-accent-400 mb-4"
             fill="currentColor"
           >
             <path d="M9 7H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2v2a2 2 0 0 1-2 2H4v2h1a4 4 0 0 0 4-4V7zm12 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2v2a2 2 0 0 1-2 2h-1v2h1a4 4 0 0 0 4-4V7z" />
@@ -259,23 +259,23 @@ export default async function HomePage() {
           <blockquote className="font-serif italic text-2xl md:text-3xl leading-relaxed text-accent-700 text-balance">
             {content.citation.quote}
           </blockquote>
-          <p className="mt-6 text-accent-600 italic">
+          <p className="mt-4 text-accent-600 italic">
             {content.citation.author}
           </p>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-20 md:py-28">
+      <section className="py-14 md:py-20">
         <div className="container-prose">
-          <div className="rounded-[2rem] bg-gradient-to-br from-bo to-bo-dark px-8 md:px-14 py-16 md:py-20 text-center text-sand-50 shadow-xl">
+          <div className="rounded-[2rem] bg-gradient-to-br from-bo to-bo-dark px-8 md:px-14 py-12 md:py-16 text-center text-sand-50 shadow-xl">
             <h2 className="font-serif text-3xl md:text-4xl font-medium leading-tight text-balance">
               {content.finalCta.title}
             </h2>
-            <p className="mt-5 text-sand-50/90 max-w-xl mx-auto text-balance">
+            <p className="mt-4 text-sand-50/90 max-w-xl mx-auto text-balance">
               {content.finalCta.description}
             </p>
-            <div className="mt-10">
+            <div className="mt-8">
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-2 rounded-full bg-sand-50 px-8 py-4 text-sm font-medium text-bo-dark transition-all hover:bg-white hover:-translate-y-0.5 shadow-md"

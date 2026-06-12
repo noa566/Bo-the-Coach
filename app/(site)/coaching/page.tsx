@@ -22,11 +22,11 @@ export default async function CoachingPage() {
         subtitle={c.header.subtitle}
       />
 
-      <section className="py-20 md:py-24">
+      <section className="py-12 md:py-16">
         <div className="container-full">
           <p className="lead text-center max-w-3xl mx-auto">{c.intro}</p>
 
-          <div className="mt-16 grid md:grid-cols-2 gap-8">
+          <div className="mt-10 grid md:grid-cols-2 gap-6">
             {c.orientations.map((o, idx) => {
               const numberColors = [
                 "text-bo",
@@ -43,7 +43,7 @@ export default async function CoachingPage() {
               return (
               <article
                 key={idx}
-                className={`rounded-3xl bg-white border border-sand-200 p-8 md:p-10 transition-all hover:shadow-lg flex flex-col ${
+                className={`rounded-3xl bg-white border border-sand-200 p-7 md:p-8 transition-all hover:shadow-lg flex flex-col ${
                   borderHovers[idx % borderHovers.length]
                 }`}
               >
@@ -60,11 +60,11 @@ export default async function CoachingPage() {
                 <h2 className="font-serif text-2xl md:text-[26px] font-medium mt-2 mb-2 leading-snug">
                   {o.title}
                 </h2>
-                <p className="text-sm uppercase tracking-wider text-bo-dark/80 mb-6">
+                <p className="text-sm uppercase tracking-wider text-bo-dark/80 mb-5">
                   {o.subtitle}
                 </p>
 
-                <figure className="quote-block mb-7">
+                <figure className="quote-block mb-5">
                   <blockquote className="font-serif text-base italic leading-relaxed">
                     « {o.quote.text} »
                   </blockquote>
@@ -94,11 +94,11 @@ export default async function CoachingPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-accent-100/40">
+      <section className="py-12 md:py-16 bg-accent-100/40">
         <div className="container-prose text-center">
           <h2 className="h-section text-balance">{c.cta.title}</h2>
-          <p className="lead mt-5 text-balance">{c.cta.lead}</p>
-          <div className="mt-10 flex flex-wrap justify-center gap-4">
+          <p className="lead mt-4 text-balance">{c.cta.lead}</p>
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link href="/contact" className="btn-primary">
               {c.cta.primaryButton}
             </Link>

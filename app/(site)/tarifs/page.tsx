@@ -22,13 +22,13 @@ export default async function TarifsPage() {
         subtitle={c.header.subtitle}
       />
 
-      <section className="py-20 md:py-24">
+      <section className="py-12 md:py-16">
         <div className="container-full">
           <div className="grid md:grid-cols-3 gap-6 md:gap-8">
             {c.plans.map((p, idx) => (
               <article
                 key={idx}
-                className={`relative rounded-3xl p-8 md:p-10 transition-all ${
+                className={`relative rounded-3xl p-7 md:p-9 transition-all ${
                   p.highlight
                     ? "bg-gradient-to-br from-bo to-bo-dark text-sand-50 shadow-xl scale-100 md:scale-[1.03]"
                     : "bg-white border border-sand-200 hover:border-bo/40 hover:shadow-lg"
@@ -56,12 +56,12 @@ export default async function TarifsPage() {
                 </p>
 
                 <div
-                  className={`my-7 h-px ${
+                  className={`my-5 h-px ${
                     p.highlight ? "bg-sand-50/25" : "bg-sand-200"
                   }`}
                 />
 
-                <ul className="space-y-5">
+                <ul className="space-y-4">
                   {p.options.map((o, i) => (
                     <li key={i}>
                       <p
@@ -82,7 +82,7 @@ export default async function TarifsPage() {
                   ))}
                 </ul>
 
-                <div className="mt-10">
+                <div className="mt-7">
                   <Link
                     href="/contact"
                     className={
@@ -98,7 +98,7 @@ export default async function TarifsPage() {
             ))}
           </div>
 
-          <div className="mt-16 max-w-2xl mx-auto rounded-2xl bg-accent-100/50 border border-accent-200 p-8 text-center">
+          <div className="mt-10 max-w-2xl mx-auto rounded-2xl bg-accent-100/50 border border-accent-200 p-7 text-center">
             <h3 className="font-serif text-xl font-medium mb-3">
               {c.founding.title}
             </h3>

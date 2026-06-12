@@ -24,8 +24,8 @@ export default async function CoachPage() {
         subtitle={c.header.subtitle}
       />
 
-      <section className="py-20 md:py-24">
-        <div className="container-full grid lg:grid-cols-[1fr_1.3fr] gap-12 lg:gap-16 items-start">
+      <section className="py-12 md:py-16">
+        <div className="container-full grid lg:grid-cols-[1fr_1.3fr] gap-10 lg:gap-14 items-start">
           <div className="relative lg:sticky lg:top-32">
             <div className="aspect-[4/5] rounded-[2rem] overflow-hidden bg-gradient-to-br from-accent-100 via-sand-100 to-bo/30 shadow-xl border border-sand-200 flex items-center justify-center">
               <div className="text-center px-6">
@@ -52,7 +52,7 @@ export default async function CoachPage() {
       </section>
 
       {/* Conviction / Engagement */}
-      <section className="py-20 bg-white border-y border-sand-200">
+      <section className="py-12 md:py-16 bg-white border-y border-sand-200">
         <div className="container-prose grid md:grid-cols-2 gap-10">
           <div>
             <span className="eyebrow">{c.conviction.eyebrow}</span>
@@ -70,7 +70,7 @@ export default async function CoachPage() {
       </section>
 
       {/* Inspiration quote */}
-      <section className="py-20">
+      <section className="py-12 md:py-16">
         <div className="container-prose">
           <div className="text-center">
             <span className="eyebrow">{c.inspiration.eyebrow}</span>
@@ -84,14 +84,14 @@ export default async function CoachPage() {
       </section>
 
       {/* Formations */}
-      <section className="py-20 md:py-24 bg-accent-100/40">
-        <div className="container-full grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <section className="py-12 md:py-16 bg-accent-100/40">
+        <div className="container-full grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
           <div>
             <span className="eyebrow">{c.formations.eyebrow}</span>
-            <h2 className="h-section mt-4 text-balance">
+            <h2 className="h-section mt-3 text-balance">
               {c.formations.title}
             </h2>
-            <ul className="mt-8 space-y-4">
+            <ul className="mt-6 space-y-3">
               {c.formations.items.map((item, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <span className="mt-2 h-1.5 w-1.5 rounded-full bg-accent-500 shrink-0" />
@@ -113,11 +113,11 @@ export default async function CoachPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20">
+      <section className="py-12 md:py-16">
         <div className="container-prose text-center">
           <h2 className="h-section text-balance">{c.cta.title}</h2>
-          <p className="lead mt-5">{c.cta.lead}</p>
-          <div className="mt-10">
+          <p className="lead mt-4">{c.cta.lead}</p>
+          <div className="mt-8">
             <Link href="/contact" className="btn-primary">
               {c.cta.button}
             </Link>

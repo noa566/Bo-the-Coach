@@ -22,13 +22,13 @@ export default async function TemoignagesPage() {
         subtitle={c.header.subtitle}
       />
 
-      <section className="py-20 md:py-24">
+      <section className="py-12 md:py-16">
         <div className="container-full">
-          <div className="grid md:grid-cols-2 gap-6 md:gap-8">
+          <div className="grid md:grid-cols-2 gap-5 md:gap-6">
             {c.testimonials.map((t, i) => (
               <figure
                 key={i}
-                className={`rounded-3xl border border-sand-200 bg-white p-8 md:p-10 hover:shadow-lg hover:border-bo/30 transition-all relative ${
+                className={`rounded-3xl border border-sand-200 bg-white p-7 md:p-8 hover:shadow-lg hover:border-bo/30 transition-all relative ${
                   t.long ? "md:col-span-2" : ""
                 }`}
               >
@@ -46,7 +46,7 @@ export default async function TemoignagesPage() {
                 <blockquote className="body-text italic pr-10">
                   « {t.text} »
                 </blockquote>
-                <figcaption className="mt-6 pt-5 border-t border-sand-200 flex items-center gap-3">
+                <figcaption className="mt-5 pt-4 border-t border-sand-200 flex items-center gap-3">
                   <div className="w-9 h-9 rounded-full bg-gradient-to-br from-bo to-accent-400 flex items-center justify-center text-white text-sm font-medium">
                     {(t.author || "—")
                       .split(" ")[0]
@@ -62,11 +62,11 @@ export default async function TemoignagesPage() {
         </div>
       </section>
 
-      <section className="py-20 bg-accent-100/40">
+      <section className="py-12 md:py-16 bg-accent-100/40">
         <div className="container-prose text-center">
           <h2 className="h-section text-balance">{c.cta.title}</h2>
-          <p className="lead mt-5">{c.cta.lead}</p>
-          <div className="mt-10">
+          <p className="lead mt-4">{c.cta.lead}</p>
+          <div className="mt-8">
             <Link href="/contact" className="btn-primary">
               {c.cta.button}
             </Link>

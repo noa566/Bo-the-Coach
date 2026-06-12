@@ -24,15 +24,15 @@ export default async function FormationPage() {
         subtitle={c.header.subtitle}
       />
 
-      <section className="py-20">
+      <section className="py-10 md:py-14">
         <div className="container-prose">
           <p className="body-text">{c.intro}</p>
         </div>
       </section>
 
-      <section className="py-16 bg-white border-y border-sand-200">
+      <section className="py-12 md:py-16 bg-white border-y border-sand-200">
         <div className="container-full">
-          <div className="text-center mb-12">
+          <div className="text-center mb-10">
             <span className="eyebrow">{c.expertises.eyebrow}</span>
             <h2 className="h-section mt-3 text-balance">{c.expertises.title}</h2>
           </div>
@@ -75,15 +75,15 @@ export default async function FormationPage() {
         </div>
       </section>
 
-      <section className="py-20">
-        <div className="container-full grid lg:grid-cols-[1fr_1.4fr] gap-12 lg:gap-16 items-start">
+      <section className="py-12 md:py-16">
+        <div className="container-full grid lg:grid-cols-[1fr_1.4fr] gap-10 lg:gap-14 items-start">
           <div className="lg:sticky lg:top-32">
             <span className="eyebrow">{c.applications.eyebrow}</span>
-            <h2 className="h-section mt-4 text-balance">
+            <h2 className="h-section mt-3 text-balance">
               {c.applications.title}
             </h2>
-            <p className="body-text mt-6">{c.applications.intro}</p>
-            <div className="relative mt-10 hidden lg:block">
+            <p className="body-text mt-4">{c.applications.intro}</p>
+            <div className="relative mt-8 hidden lg:block">
               <Image
                 src="/illustrations/growth.png"
                 alt="Illustration d'un arbre en croissance"
@@ -94,7 +94,7 @@ export default async function FormationPage() {
             </div>
           </div>
 
-          <ul className="space-y-5">
+          <ul className="space-y-4">
             {c.applications.items.map((a, i) => (
               <li
                 key={i}
@@ -117,7 +117,7 @@ export default async function FormationPage() {
         </div>
       </section>
 
-      <section className="py-20 bg-accent-100/40">
+      <section className="py-10 md:py-14 bg-accent-100/40">
         <div className="container-prose">
           <QuoteBlock
             variant="centered"
@@ -127,11 +127,11 @@ export default async function FormationPage() {
         </div>
       </section>
 
-      <section className="py-20">
+      <section className="py-12 md:py-16">
         <div className="container-prose text-center">
           <h2 className="h-section text-balance">{c.cta.title}</h2>
-          <p className="lead mt-5">{c.cta.lead}</p>
-          <div className="mt-10 flex flex-wrap justify-center gap-4">
+          <p className="lead mt-4">{c.cta.lead}</p>
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link href="/contact" className="btn-primary">
               {c.cta.primaryButton}
             </Link>
