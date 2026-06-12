@@ -9,6 +9,12 @@ export default function PageHeader({ title, subtitle }: Props) {
   return (
     <section className="relative bg-gradient-to-b from-sand-100 to-sand-50 border-b border-sand-200">
       <div className="container-prose py-12 md:py-16 text-center animate-fade-in-up">
+        <span
+          aria-hidden
+          className="mx-auto mb-5 flex h-2 w-2 items-center justify-center"
+        >
+          <span className="h-1.5 w-1.5 rounded-full bg-joy-500 animate-pulse-soft" />
+        </span>
         <h1 className="h-display text-balance">{title}</h1>
         {subtitle && (
           <p className="lead mt-4 max-w-2xl mx-auto text-balance">{subtitle}</p>

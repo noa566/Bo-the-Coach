@@ -32,7 +32,17 @@
   }
 
   .eyebrow {
-    @apply inline-block text-xs uppercase tracking-widest text-bo-dark font-medium;
+    @apply inline-flex items-center gap-2 text-xs uppercase tracking-widest text-bo-dark font-medium;
+  }
+  .eyebrow::before {
+    content: "";
+    @apply h-1.5 w-1.5 rounded-full bg-joy-500 shrink-0;
+    animation: pulseSoft 3s ease-in-out infinite;
+  }
+  /* Variante centrée (utilisée dans les sections "text-center") :
+     on inverse en flex column afin que le titre reste centré sur sa propre ligne. */
+  .text-center .eyebrow {
+    @apply justify-center;
   }
 
   .h-display {

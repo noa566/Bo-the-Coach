@@ -100,10 +100,7 @@ export default async function HomePage() {
 
         <div className="container-full grid lg:grid-cols-2 gap-10 lg:gap-14 items-center py-10 md:py-16 relative">
           <div className="animate-fade-in-up">
-            <span className="eyebrow mb-5 inline-flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-joy-500 animate-pulse-soft" />
-              {content.hero.eyebrow}
-            </span>
+            <span className="eyebrow mb-5">{content.hero.eyebrow}</span>
             <h1 className="h-display mt-4 text-balance">
               {content.hero.titleStart}{" "}
               <span className="text-accent-500 italic">
