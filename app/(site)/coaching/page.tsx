@@ -51,14 +51,6 @@ export default async function CoachingPage() {
                   {o.subtitle}
                 </p>
 
-                <div className="mb-5">
-                  <QuoteBlock
-                    variant="inline"
-                    quote={o.quote.text}
-                    author={o.quote.author}
-                  />
-                </div>
-
                 <ul className="space-y-3 mt-auto">
                   {o.items.map((it, i) => (
                     <li
@@ -77,6 +69,12 @@ export default async function CoachingPage() {
               );
             })}
           </div>
+        </div>
+      </section>
+
+      <section className="py-5 md:py-7 bg-accent-100/40">
+        <div className="container-prose">
+          <QuoteBlock quote={c.quote.text} author={c.quote.author} />
         </div>
       </section>
 

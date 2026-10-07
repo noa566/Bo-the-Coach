@@ -90,14 +90,14 @@ export default async function TarifsPage() {
             ))}
           </div>
 
-          <div className="mt-7 grid gap-6 max-w-2xl mx-auto">
+          <div className="mt-7 flex justify-center">
             <Reveal
               variant="up"
-              className="relative overflow-hidden rounded-2xl bg-accent-100/50 border border-accent-200 p-7 transition-all hover:shadow-lg hover:border-accent-300 h-full"
+              className="relative overflow-hidden rounded-2xl bg-accent-100/50 border border-accent-200 px-8 py-6 transition-all hover:shadow-lg hover:border-accent-300 w-fit max-w-full"
               as="div"
             >
               <CardTopBar index={2} />
-              <h3 className="font-sans text-lg md:text-xl font-semibold tracking-tight mb-3">
+              <h3 className="font-sans text-lg md:text-xl font-semibold tracking-tight mb-3 text-center">
                 Comment je travaille
               </h3>
               <ul className="space-y-2 text-sm text-ink-soft leading-relaxed">

@@ -37,7 +37,7 @@ export default function CoachingEditor({
 
       <Section
         title="Orientations"
-        description="Les blocs (par défaut 4 cartes) avec citation et liste de thématiques."
+        description="Les blocs (par défaut 4 cartes) avec leur liste de thématiques."
       >
         <ArrayField
           items={value.orientations}
@@ -46,7 +46,6 @@ export default function CoachingEditor({
             number: "",
             title: "",
             subtitle: "",
-            quote: { text: "", author: "" },
             items: [{ strong: "", text: "" }],
           })}
           itemLabel="Orientation"
@@ -72,22 +71,6 @@ export default function CoachingEditor({
                   />
                 </Field>
               </div>
-              <Field label="Citation">
-                <Textarea
-                  value={o.quote.text}
-                  onChange={(v) =>
-                    update({ quote: { ...o.quote, text: v } })
-                  }
-                />
-              </Field>
-              <Field label="Auteur de la citation">
-                <Input
-                  value={o.quote.author}
-                  onChange={(v) =>
-                    update({ quote: { ...o.quote, author: v } })
-                  }
-                />
-              </Field>
               <Field label="Thématiques de cette orientation">
                 <ArrayField
                   items={o.items}
@@ -115,6 +98,25 @@ export default function CoachingEditor({
             </>
           )}
         />
+      </Section>
+
+      <Section title="Citation (bas de page)">
+        <Field label="Citation">
+          <Textarea
+            value={value.quote.text}
+            onChange={(v) =>
+              onChange({ ...value, quote: { ...value.quote, text: v } })
+            }
+          />
+        </Field>
+        <Field label="Auteur">
+          <Input
+            value={value.quote.author}
+            onChange={(v) =>
+              onChange({ ...value, quote: { ...value.quote, author: v } })
+            }
+          />
+        </Field>
       </Section>
 
       <Section title="Bloc CTA (bas de page)">

@@ -59,7 +59,6 @@ export type CoachingOrientation = {
   number: string;
   title: string;
   subtitle: string;
-  quote: { text: string; author: string };
   items: { strong: string; text: string }[];
 };
 
@@ -67,6 +66,7 @@ export type CoachingContent = {
   header: PageHeaderContent;
   intro: string;
   orientations: CoachingOrientation[];
+  quote: { text: string; author: string };
   cta: {
     title: string;
     lead: string;
@@ -296,31 +296,23 @@ export const defaultCoachingContent: CoachingContent = {
     {
       number: "01",
       title: "Développez vos compétences",
-      subtitle: "Passer de « je voudrais pouvoir faire » à « je le fais »",
-      quote: {
-        text: "Tu me dis, j'oublie. Tu m'enseignes, je m'en souviens. Tu m'impliques, j'apprends.",
-        author: "Benjamin Franklin",
-      },
+      subtitle: "Passer de « il faudrait faire » à « je le fais »",
       items: [
         {
-          strong: "Communiquer",
-          text: "exprimer son intention, développer son écoute, renforcer la confiance mutuelle",
+          strong: "Communiquer avec impact",
+          text: "exprimer ses idées et ses besoins avec clarté",
         },
         {
-          strong: "S'affirmer",
-          text: "oser dire qui on est et ce qu'on pense, prendre du recul, exprimer ses besoins",
+          strong: "S'affirmer dans ses relations",
+          text: "prendre sa place, poser ses limites et oser dire non",
         },
         {
-          strong: "Prioriser",
-          text: "organiser votre temps, faire des choix, concilier engagement et équilibre",
+          strong: "S'organiser efficacement",
+          text: "gérer son temps, hiérarchiser et mieux décider",
         },
         {
-          strong: "Gérer des projets et coopérer",
-          text: "donner un cap, clarifier les objectifs et les rôles, mobiliser les énergies",
-        },
-        {
-          strong: "S'adapter au changement",
-          text: "traverser les transitions avec souplesse, s'ajuster, rester agile et aligné",
+          strong: "Développer son agilité",
+          text: "explorer les possibilités et expérimenter de nouvelles façons d'agir",
         },
       ],
     },
@@ -328,30 +320,22 @@ export const defaultCoachingContent: CoachingContent = {
       number: "02",
       title: "Clarifiez le sens de votre vie",
       subtitle: "Abandonner le pilote automatique et reprendre le volant",
-      quote: {
-        text: "La question n'est pas de savoir si « la vie a un sens », mais comment pourrais-je donner un sens à ma propre vie.",
-        author: "Tenzin Gyatso, XIVème Dalaï Lama",
-      },
       items: [
         {
-          strong: "Se comprendre",
-          text: "identifier vos valeurs, clarifier vos besoins et vos ressources, aborder ses pensées limitantes",
+          strong: "Mieux se connaître",
+          text: "identifier ses valeurs, ses besoins et ce qui compte vraiment",
         },
         {
-          strong: "S'accepter",
-          text: "reconnaître et accueillir ses émotions pour en faire des alliées",
+          strong: "Accueillir ses émotions",
+          text: "mieux les comprendre et en faire ses alliées",
         },
         {
-          strong: "Se (re)construire",
-          text: "prendre sa place, s'affranchir du regard des autres, renforcer sa confiance",
+          strong: "Traverser une transition",
+          text: "se repositionner dans une période de changement",
         },
         {
-          strong: "Redonner du sens",
-          text: "à son travail ou à ses projets, définir ses priorités, retrouver du mouvement et de l'envie",
-        },
-        {
-          strong: "Changer de cap",
-          text: "faire des choix alignés, aborder le changement avec sérénité et motivation",
+          strong: "Donner du sens à ses projets",
+          text: "faire des choix alignés avec ce que l'on souhaite vivre",
         },
       ],
     },
@@ -359,30 +343,22 @@ export const defaultCoachingContent: CoachingContent = {
       number: "03",
       title: "Combinez performance et équilibre",
       subtitle: "Donner le meilleur de soi-même sans s'épuiser",
-      quote: {
-        text: "Certains veulent que ça arrive, d'autres aimeraient que ça arrive et quelques-uns font en sorte que ça arrive",
-        author: "Michael Jordan",
-      },
       items: [
         {
-          strong: "S'organiser et gérer le temps",
-          text: "poser les bonnes priorités, faire des choix et gagner en efficacité",
+          strong: "Se fixer des objectifs stimulants",
+          text: "transformer une intention en actions concrètes",
         },
         {
-          strong: "Définir ses objectifs",
-          text: "clarifier où vous allez, pourquoi vous y allez… et comment y aller !",
+          strong: "Nourrir sa motivation",
+          text: "identifier ses moteurs et maintenir son engagement dans la durée",
         },
         {
-          strong: "S'engager avec motivation",
-          text: "garder le cap sur la durée même quand les obstacles surviennent",
+          strong: "Gérer la pression",
+          text: "préserver son énergie et ses moyens dans les situations exigeantes",
         },
         {
-          strong: "Gérer le stress",
-          text: "faire face à l'imprévu, apprendre à rester centré·e, se ressourcer et mobiliser son énergie",
-        },
-        {
-          strong: "Leadership",
-          text: "asseoir votre posture, affiner votre impact, co-construire, embarquer votre équipe sans vous oublier",
+          strong: "Renforcer son leadership",
+          text: "développer sa posture et sa capacité à mobiliser autour de soi",
         },
       ],
     },
@@ -390,34 +366,30 @@ export const defaultCoachingContent: CoachingContent = {
       number: "04",
       title: "Accompagnez votre équipe",
       subtitle: "Renforcer la dynamique collective et la coopération",
-      quote: {
-        text: "Le travail d'équipe… c'est le carburant qui permet aux gens ordinaires d'atteindre des résultats hors du commun",
-        author: "Andrew Carnegie",
-      },
       items: [
         {
-          strong: "Communication et relations internes",
-          text: "mieux se comprendre, réguler les tensions, retrouver du lien",
+          strong: "Entretenir des relations constructives",
+          text: "favoriser l'écoute, le dialogue et la qualité des interactions",
         },
         {
-          strong: "Vision et alignement",
-          text: "s'accorder sur une direction, des valeurs communes, un cap motivant",
+          strong: "Trouver sa place",
+          text: "clarifier les rôles et les responsabilités pour favoriser la contribution de chacun",
         },
         {
-          strong: "Rôles et responsabilités",
-          text: "clarifier les attentes, renforcer la confiance, fluidifier les délégations",
+          strong: "Développer la complémentarité",
+          text: "s'appuyer sur les forces individuelles au service du collectif",
         },
         {
-          strong: "Fonctionnement collectif",
-          text: "ajuster les modes de décision, revisiter les réunions, gagner en agilité",
-        },
-        {
-          strong: "Transitions et changements",
-          text: "traverser une réorganisation, accueillir de nouveaux membres, construire une nouvelle dynamique",
+          strong: "Faire évoluer le fonctionnement",
+          text: "identifier les freins et construire ensemble de nouvelles pratiques",
         },
       ],
     },
   ],
+  quote: {
+    text: "Certains veulent que ça arrive, d'autres aimeraient que ça arrive et quelques-uns font en sorte que ça arrive",
+    author: "Michael Jordan",
+  },
   cta: {
     title: "Quelle orientation résonne avec vous ?",
     lead: "Discutons-en lors d'une séance fondation, sans engagement.",
