@@ -90,28 +90,31 @@ export default async function TarifsPage() {
             ))}
           </div>
 
-          <div className="mt-7 flex justify-center">
-            <Reveal
-              variant="up"
-              className="relative overflow-hidden rounded-2xl bg-accent-100/50 border border-accent-200 px-8 py-6 transition-all hover:shadow-lg hover:border-accent-300 w-fit max-w-full"
-              as="div"
-            >
-              <CardTopBar index={2} />
-              <h3 className="font-sans text-lg md:text-xl font-semibold tracking-tight mb-3 text-center">
-                Comment je travaille
-              </h3>
-              <ul className="space-y-2 text-sm text-ink-soft leading-relaxed">
-                {[
-                  "Réponse sous 48h ouvrées",
-                  "Contact téléphonique ou par email",
-                  "Première séance fondation sans engagement",
-                  "Confidentialité garantie",
-                  "En présentiel ou en visio",
-                ].map((item, i) => (
-                  <li key={i}>· {item}</li>
-                ))}
-              </ul>
-            </Reveal>
+          <div className="mt-7 grid md:grid-cols-3 gap-6 md:gap-8">
+            <div className="hidden md:block" aria-hidden />
+            <div className="flex justify-center">
+              <Reveal
+                variant="up"
+                className="relative overflow-hidden rounded-2xl bg-accent-100/50 border border-accent-200 px-6 py-5 w-fit max-w-full transition-all hover:shadow-lg hover:border-accent-300"
+                as="div"
+              >
+                <CardTopBar index={2} />
+                <h3 className="font-sans text-lg md:text-xl font-semibold tracking-tight mb-3 text-center">
+                  Comment je travaille
+                </h3>
+                <ul className="space-y-2 text-sm text-ink-soft leading-relaxed">
+                  {[
+                    "Réponse sous 48h ouvrées",
+                    "Contact téléphonique ou par email",
+                    "Première séance fondation sans engagement",
+                    "Confidentialité garantie",
+                    "En présentiel ou en visio",
+                  ].map((item, i) => (
+                    <li key={i}>· {item}</li>
+                  ))}
+                </ul>
+              </Reveal>
+            </div>
           </div>
         </div>
       </section>
